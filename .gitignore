@@ -13,9 +13,9 @@ node_modules/
 
 # SQLite Database
 *.db
+*.db-*
 *.sqlite
 *.sqlite3
-backend/tasks.db
 
 # Vite / React Build
 dist/
