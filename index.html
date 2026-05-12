@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaskFlow – Task Manager</title>
+  <link rel="stylesheet" href="src/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="header-inner">
+        <div class="logo">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="28" height="28" rx="8" fill="#2563EB"/>
+            <path d="M8 14.5L12 18.5L20 10" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="logo-text">TaskFlow</span>
+        </div>
+        <div class="header-stats">
+          <span class="stat"><span id="stat-total">0</span> tasks</span>
+          <span class="stat-dot"></span>
+          <span class="stat"><span id="stat-done">0</span> done</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="toolbar">
+        <div class="filter-tabs" role="tablist" aria-label="Filter tasks">
+          <button class="tab active" role="tab" data-filter="all" aria-selected="true">All</button>
+          <button class="tab" role="tab" data-filter="active" aria-selected="false">Active</button>
+          <button class="tab" role="tab" data-filter="completed" aria-selected="false">Completed</button>
+        </div>
+        <div class="search-wrap">
+          <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="6.5" cy="6.5" r="4.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <input type="text" id="search-input" class="search-input" placeholder="Search tasks…" aria-label="Search tasks" />
+        </div>
+      </div>
+
+      <div class="add-task-card">
+        <input type="text" id="task-input" class="task-input" placeholder="Add a new task…" maxlength="120" aria-label="New task title" />
+        <div class="add-task-row">
+          <select id="priority-select" class="priority-select" aria-label="Priority">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+          </select>
+          <input type="date" id="due-date" class="due-input" aria-label="Due date" />
+          <button id="add-btn" class="add-btn" aria-label="Add task">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M8 2V14M2 8H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Add Task
+          </button>
+        </div>
+      </div>
+
+      <ul class="task-list" id="task-list" aria-label="Task list" aria-live="polite"></ul>
+
+      <div class="empty-state" id="empty-state" hidden>
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="10" width="32" height="36" rx="4" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <path d="M16 20H32M16 27H26" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <p class="empty-title" id="empty-title">No tasks yet</p>
+        <p class="empty-sub">Add your first task above to get started</p>
+      </div>
+    </main>
+
+    <div class="modal-overlay" id="modal-overlay" hidden aria-modal="true" role="dialog" aria-labelledby="modal-title">
+      <div class="modal">
+        <div class="modal-header">
+          <h2 class="modal-title" id="modal-title">Edit Task</h2>
+          <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <label class="field-label" for="edit-title">Title</label>
+          <input type="text" id="edit-title" class="task-input" maxlength="120" aria-required="true" />
+          <div class="edit-row">
+            <div class="field-group">
+              <label class="field-label" for="edit-priority">Priority</label>
+              <select id="edit-priority" class="priority-select">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="edit-due">Due date</label>
+              <input type="date" id="edit-due" class="due-input" />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-ghost" id="modal-cancel">Cancel</button>
+          <button class="add-btn" id="modal-save">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="src/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+node_modules/
+
+# Mac OS
+.DS_Store
+
+# SQLite Database
+*.db
+*.sqlite
+*.sqlite3
+backend/tasks.db
+
+# Vite / React Build
+dist/
+.vite/
+
+# Environment Variables
+.env
+.env.test
+.env.production
+.env.local
+
+# Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
